@@ -9,6 +9,10 @@ Optimize prompts for multiple file operations, parallel processing, and efficien
 "Batch prompt for: Rename variable across multiple files"
 "Optimize for parallel: Add logging to all service files"
 
+### With File Input
+`/batch-operations-prompt @path/to/operation-request.md`
+`/batch-operations-prompt @../refactoring-plan.txt`
+
 ### Complex Operations
 "Batch refactor: Convert callbacks to async/await in all files"
 "Parallel update: Add TypeScript types to all components"
@@ -17,6 +21,11 @@ Optimize prompts for multiple file operations, parallel processing, and efficien
 ## Instructions for Claude
 
 When creating batch operation prompts:
+
+### Input Handling
+- If `$ARGUMENTS` is provided, read the file at that path to get the operation request to optimize
+- If no `$ARGUMENTS`, use the user's direct input as the operation to optimize
+- Support relative and absolute file paths
 
 1. **Identify Parallelizable Tasks**: Determine what can be done simultaneously
 2. **Group Related Operations**: Organize tasks by type and dependency

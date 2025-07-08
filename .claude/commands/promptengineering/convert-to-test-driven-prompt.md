@@ -9,6 +9,10 @@ Transform user requests into Test-Driven Development (TDD) style prompts that ex
 "Make this test-driven: Create a shopping cart component"
 "TDD version: Implement data validation for the form"
 
+### With File Input
+`/convert-to-test-driven-prompt @path/to/prompt-file.md`
+`/convert-to-test-driven-prompt @../other-project/feature-request.txt`
+
 ### Complex Scenarios
 "Convert to TDD: Refactor the payment processing module"
 "Test-driven approach for: API rate limiting feature"
@@ -17,6 +21,11 @@ Transform user requests into Test-Driven Development (TDD) style prompts that ex
 ## Instructions for Claude
 
 When converting to TDD prompts:
+
+### Input Handling
+- If `$ARGUMENTS` is provided, read the file at that path to get the prompt to convert
+- If no `$ARGUMENTS`, use the user's direct input as the prompt to convert
+- Support relative and absolute file paths
 
 1. **Extract Requirements**: Identify core functionality from the original request
 2. **Define Test Cases**: Create specific, measurable test scenarios
