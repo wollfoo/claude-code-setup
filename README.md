@@ -6,16 +6,54 @@ My Claude Code project's starter settings and Claude Code hooks and slash comman
 * [Cloudflare Documentation MCP](https://github.com/cloudflare/mcp-server-cloudflare/tree/main/apps/docs-vectorize)
 * [Context 7 MCP](https://github.com/upstash/context7)
 
+## Claude Code Hooks
+
 The Claude Code hook is for `STOP` which uses Terminal-Notifier to show macOS desktop notifications whenever Claude Code stops and finishes it's response https://github.com/centminmod/terminal-notifier-setup.
 
+## Claude Code Slash Commands
 
-# Claude Code settings
+### `/anthropic` Commands
+
+- **`/apply-thinking-to`** - Expert prompt engineering specialist that applies Anthropic's extended thinking patterns to enhance prompts with advanced reasoning frameworks
+  - Transforms prompts using progressive reasoning structure (open-ended → systematic)
+  - Applies sequential analytical frameworks and systematic verification with test cases
+  - Includes constraint optimization, bias detection, and extended thinking budget management
+  - Usage: `/apply-thinking-to @/path/to/prompt-file.md`
+
+- **`/convert-to-todowrite-tasklist-prompt`** - Converts complex, context-heavy prompts into efficient TodoWrite tasklist-based methods with parallel subagent execution
+  - Achieves 60-70% speed improvements through parallel processing
+  - Transforms verbose workflows into specialized task delegation
+  - Prevents context overflow through strategic file selection (max 5 files per task)
+  - Usage: `/convert-to-todowrite-tasklist-prompt @/path/to/original-slash-command.md`
+
+- **`/update-memory-bank`** - Simple command to update CLAUDE.md and memory bank files
+  - Usage: `/update-memory-bank`
+
+### `/ccusage` Commands
+
+- **`/ccusage-daily`** - Generates comprehensive Claude Code usage cost analysis and statistics
+  - Runs `ccusage daily` command and parses output into structured markdown
+  - Provides executive summary with total costs, peak usage days, and cache efficiency
+  - Creates detailed tables showing daily costs, token usage, and model statistics
+  - Includes usage insights, recommendations, and cost management analysis
+  - Usage: `/ccusage-daily`
+
+### `/cleanup` Commands
+
+- **`/cleanup-context`** - Memory bank optimization specialist for reducing token usage in documentation
+  - Removes duplicate content and eliminates obsolete files
+  - Consolidates overlapping documentation while preserving essential information
+  - Implements archive strategies for historical documentation
+  - Achieves 15-25% token reduction through systematic optimization
+  - Usage: `/cleanup-context`
+
+## Claude Code settings
 
 > Configure Claude Code with global and project-level settings, and environment variables.
 
 Claude Code offers a variety of settings to configure its behavior to meet your needs. You can configure Claude Code by running the `/config` command when using the interactive REPL.
 
-## Settings files
+### Settings files
 
 The `settings.json` file is our official mechanism for configuring Claude
 Code through hierarchical settings:
@@ -26,7 +64,7 @@ Code through hierarchical settings:
   * `.claude/settings.json` for settings that are checked into source control and shared with your team
   * `.claude/settings.local.json` for settings that are not checked in, useful for personal preferences and experimentation. Claude Code will configure git to ignore `.claude/settings.local.json` when it is created.
 
-### Available settings
+#### Available settings
 
 `settings.json` supports a number of options:
 
@@ -38,7 +76,7 @@ Code through hierarchical settings:
 | `includeCoAuthoredBy` | Whether to include the `co-authored-by Claude` byline in git commits and pull requests (default: `true`)                                                                                                       | `false`                         |
 | `permissions`         | See table below for structure of permissions.                                                                                                                                                                  |                                 |
 
-### Permission settings
+#### Permission settings
 
 | Keys                           | Description                                                                                                                                        | Example                          |
 | :----------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------- |
@@ -48,7 +86,7 @@ Code through hierarchical settings:
 | `defaultMode`                  | Default [permission mode](iam#permission-modes) when opening Claude Code                                                                           | `"acceptEdits"`                  |
 | `disableBypassPermissionsMode` | Set to `"disable"` to prevent `bypassPermissions` mode from being activated. See [managed policy settings](iam#enterprise-managed-policy-settings) | `"disable"`                      |
 
-### Settings precedence
+#### Settings precedence
 
 Settings are applied in order of precedence:
 
@@ -58,7 +96,7 @@ Settings are applied in order of precedence:
 4. Shared project settings
 5. User settings
 
-## Environment variables
+### Environment variables
 
 Claude Code supports the following environment variables to control its behavior:
 
@@ -104,7 +142,7 @@ Claude Code supports the following environment variables to control its behavior
 | `VERTEX_REGION_CLAUDE_4_0_OPUS`            | Override region for Claude 4.0 Opus when using Vertex AI                                                                               |
 | `VERTEX_REGION_CLAUDE_4_0_SONNET`          | Override region for Claude 4.0 Sonnet when using Vertex AI                                                                             |
 
-## Configuration options
+### Configuration options
 
 We are in the process of migrating global configuration to `settings.json`.
 
@@ -120,7 +158,7 @@ To manage your configurations, use the following commands:
 
 By default `config` changes your project configuration. To manage your global configuration, use the `--global` (or `-g`) flag.
 
-### Global configuration
+#### Global configuration
 
 To set a global configuration, use `claude config set -g <key> <value>`:
 
@@ -131,7 +169,7 @@ To set a global configuration, use `claude config set -g <key> <value>`:
 | `theme`                 | Color theme                                                                                                                                                                                        | `dark`, `light`, `light-daltonized`, or `dark-daltonized`                  |
 | `verbose`               | Whether to show full bash and command outputs (default: `false`)                                                                                                                                   | `true`                                                                     |
 
-## Tools available to Claude
+### Tools available to Claude
 
 Claude Code has access to a set of powerful tools that help it understand and modify your codebase:
 
@@ -155,7 +193,7 @@ Claude Code has access to a set of powerful tools that help it understand and mo
 
 Permission rules can be configured using `/allowed-tools` or in [permission settings](/en/docs/claude-code/settings#available-settings).
 
-### Extending tools with hooks
+#### Extending tools with hooks
 
 You can run custom commands before or after any tool executes using
 [Claude Code hooks](/en/docs/claude-code/hooks).
