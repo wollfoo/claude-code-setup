@@ -1,3 +1,12 @@
+# My Claude Code Project's Starter Settings
+
+My Claude Code project's starter settings and Claude Code hooks and slash commands which include the following MCP servers
+
+* [Gemini CLI MCP](https://github.com/centminmod/gemini-cli-mcp-server)
+* [Cloudflare Documentation MCP](https://github.com/cloudflare/mcp-server-cloudflare/tree/main/apps/docs-vectorize)
+* [Context 7 MCP](https://github.com/upstash/context7)
+
+
 # Claude Code settings
 
 > Configure Claude Code with global and project-level settings, and environment variables.
