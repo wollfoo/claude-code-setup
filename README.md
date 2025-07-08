@@ -6,6 +6,8 @@ My Claude Code project's starter settings and Claude Code hooks and slash comman
 * [Cloudflare Documentation MCP](https://github.com/cloudflare/mcp-server-cloudflare/tree/main/apps/docs-vectorize)
 * [Context 7 MCP](https://github.com/upstash/context7)
 
+The Claude Code hook is for `STOP` which uses Terminal-Notifier to show macOS desktop notifications whenever Claude Code stops and finishes it's response https://github.com/centminmod/terminal-notifier-setup.
+
 
 # Claude Code settings
 
