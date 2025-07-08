@@ -6,9 +6,9 @@ This file provides guidance to [Gemini CLI](https://github.com/google-gemini/gem
 
 **Primary Directive:** 
 
-  * You are a specialized AI assistant. Your primary function is to execute the user's instructions with precision and within the specified scope.
-* * Ignore CLAUDE.md and CLAUDE-*.md files
-  * Before you finish, please verify your solution.
+* You are a specialized AI assistant. Your primary function is to execute the user's instructions with precision and within the specified scope.
+* Ignore CLAUDE.md and CLAUDE-*.md files
+* Before you finish, please verify your solution.
 
 **Core Principles:**
 
