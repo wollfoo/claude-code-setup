@@ -57,7 +57,8 @@
       "WebFetch(domain:docs.anthropic.com)",
       "WebFetch(domain:github.com)",
       "WebFetch(domain:openrouter.ai)",
-      "WebFetch(domain:www.comet.com)"
+      "WebFetch(domain:www.comet.com)",
+      "Bash(mkdir:*)"
     ],
     "deny": []
   }

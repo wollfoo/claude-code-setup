@@ -47,6 +47,56 @@ The Claude Code hook is for `STOP` which uses Terminal-Notifier to show macOS de
   - Achieves 15-25% token reduction through systematic optimization
   - Usage: `/cleanup-context`
 
+### `/documentation` Commands
+
+- **`/create-readme-section`** - Generate specific sections for README files with professional formatting
+  - Creates well-structured sections like Installation, Usage, API Reference, Contributing, etc.
+  - Follows markdown best practices with proper headings, code blocks, and formatting
+  - Analyzes project context to provide relevant content
+  - Matches existing README style and tone
+  - Usage: `/create-readme-section "Create an installation section for my Python project"`
+
+### `/security` Commands
+
+- **`/security-audit`** - Perform comprehensive security audit of the codebase
+  - Identifies potential vulnerabilities using OWASP guidelines
+  - Checks authentication, input validation, data protection, and API security
+  - Categorizes issues by severity (Critical, High, Medium, Low)
+  - Provides specific remediation steps with code examples
+  - Usage: `/security-audit`
+
+- **`/check-best-practices`** - Analyze code against language-specific best practices
+  - Detects languages and frameworks to apply relevant standards
+  - Checks naming conventions, code organization, error handling, and performance
+  - Provides actionable feedback with before/after code examples
+  - Prioritizes impactful improvements over nitpicks
+  - Usage: `/check-best-practices`
+
+### `/architecture` Commands
+
+- **`/explain-architecture-pattern`** - Identify and explain architectural patterns in the codebase
+  - Analyzes project structure and identifies design patterns
+  - Explains rationale behind architectural decisions
+  - Provides visual representations with diagrams
+  - Shows concrete implementation examples
+  - Usage: `/explain-architecture-pattern`
+
+### `/promptengineering` Commands
+
+- **`/convert-to-test-driven-prompt`** - Transform requests into Test-Driven Development style prompts
+  - Defines explicit test cases with Given/When/Then format
+  - Includes success criteria and edge cases
+  - Structures prompts for red-green-refactor cycle
+  - Creates measurable, specific test scenarios
+  - Usage: `/convert-to-test-driven-prompt "Add user authentication feature"`
+
+- **`/batch-operations-prompt`** - Optimize prompts for multiple file operations and parallel processing
+  - Identifies parallelizable tasks to maximize efficiency
+  - Groups operations by conflict potential
+  - Integrates with TodoWrite for task management
+  - Includes validation steps between batch operations
+  - Usage: `/batch-operations-prompt "Update all API calls to use new auth header"`
+
 ## Claude Code settings
 
 > Configure Claude Code with global and project-level settings, and environment variables.
