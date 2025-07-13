@@ -11,16 +11,20 @@ Please run the `ccusage daily -b` command and then provide a structured markdown
 - Total cost for the period
 - Date range covered
 - Number of usage days
-- Average daily cost
-- Peak usage day and cost
+- Average daily cost for sonnet
+- Average daily cost for opus
+- Average daily cost for sonnet + opus
+- Peak usage day and cost for sonnet
+- Peak usage day and cost for opus
+- Peak usage day and cost for sonnet + opus
 - Cache efficiency percentage
 
 ### Key Statistics Table
-A markdown table with:
-- Total Tokens
-- Input Tokens  
-- Output Tokens
-- Cache Read Tokens
+A markdown table with usage broken down by model and model totals:
+- Total Tokens (in millions i.e. 1,234,567 reported as 1.2345 m)
+- Input Tokens (in millions i.e. 1,234,567 reported as 1.2345 m)
+- Output Tokens (in millions i.e. 1,234,567 reported as 1.2345 m)
+- Cache Read Tokens (in millions i.e. 1,234,567 reported as 1.2345 m)
 - Total Cost
 - Average Daily Cost
 
@@ -28,9 +32,9 @@ A markdown table with:
 A compact markdown table showing:
 - Date (in MM-DD format)
 - Model used
-- Input tokens
-- Output tokens  
-- Cache read tokens
+- Input tokens (in millions i.e. 1,234,567 reported as 1.2345 m)
+- Output tokens (in millions i.e. 1,234,567 reported as 1.2345 m)
+- Cache read tokens (in millions i.e. 1,234,567 reported as 1.2345 m)
 - Total cost for that day
 
 Limit to the top 15-20 highest cost days to keep the table manageable.

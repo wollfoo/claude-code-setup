@@ -9,6 +9,8 @@
       "Bash(.venv/bin/python:*)",
       "Bash(awk:*)",
       "Bash(cat:*)",
+      "Bash(ccusage daily)",
+      "Bash(ccusage daily:*)",
       "Bash(chmod:*)",
       "Bash(claude config get)",
       "Bash(claude mcp:*)",
