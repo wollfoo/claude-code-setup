@@ -1,7 +1,7 @@
-Please run the `ccusage daily` command and then provide a structured markdown summary of the Claude Code usage costs and statistics.
+Please run the `ccusage daily -b` command and then provide a structured markdown summary of the Claude Code usage costs and statistics.
 
 ## Required Actions:
-1. Execute `ccusage daily` using the Bash tool
+1. Execute `ccusage daily -b` using the Bash tool
 2. Parse the output to extract key metrics and statistics
 3. Generate a comprehensive markdown report
 
