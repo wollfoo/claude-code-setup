@@ -1,5 +1,4 @@
 # GEMINI.md
-
 This file provides guidance to [Gemini CLI](https://github.com/google-gemini/gemini-cli)) when working with code in this repository.
 
 ## AI Guidance
