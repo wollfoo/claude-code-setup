@@ -15,6 +15,25 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 * When you update or modify core context files, also update markdown documentation and memory bank
 * When asked to commit changes, exclude CLAUDE.md and CLAUDE-*.md referenced memory bank system files from any commits.
 
+## ✅ LANGUAGE RULES (QUY TẮC NGÔN NGỮ)
+- **MANDATORY**: Luôn trả lời bằng tiếng Việt trong tất cả các phản hồi.  
+- **BILINGUAL TERMINOLOGY**: Mọi thuật ngữ tiếng Anh phải kèm theo giải thích tiếng Việt chi tiết.
+- **CONSISTENCY**: Duy trì format nhất quán trong toàn bộ cuộc hội thoại.
+
+### Standard Syntax (Cú pháp chuẩn)
+**[English Term]** (mô tả tiếng Việt – chức năng/mục đích cụ thể)
+
+### Examples (Ví dụ)
+- **Configuration System** (hệ thống cấu hình – quản lý settings và parameters của ứng dụng)
+- **JSON Schema** (lược đồ JSON – định nghĩa cấu trúc và validation rules cho dữ liệu JSON)
+- **Environment Variables** (biến môi trường – các giá trị cấu hình được set ở system level)
+
+### Implementation Rules (Quy tắc thực hiện)
+1. Áp dụng cho tất cả technical terms, framework names, và programming concepts
+2. Giải thích phải rõ ràng, chính xác về chức năng/mục đích
+3. Sử dụng dấu gạch ngang (–) để phân tách giữa mô tả và chức năng
+4. Đảm bảo consistency trong cách dịch và giải thích các thuật ngữ tương tự
+
 ## Memory Bank System
 
 This project uses a structured memory bank system with specialized context files. Always check these files for relevant information before starting work:
