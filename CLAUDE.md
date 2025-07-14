@@ -40,12 +40,20 @@ This project uses a structured memory bank system with specialized context files
 
 ### Core Context Files
 
+#### **Essential Context Files** (Tệp ngữ cảnh cần thiết)
 * **CLAUDE-activeContext.md** - Current session state, goals, and progress (if exists)
 * **CLAUDE-patterns.md** - Established code patterns and conventions (if exists)
 * **CLAUDE-decisions.md** - Architecture decisions and rationale (if exists)
 * **CLAUDE-troubleshooting.md** - Common issues and proven solutions (if exists)
 * **CLAUDE-config-variables.md** - Configuration variables reference (if exists)
 * **CLAUDE-temp.md** - Temporary scratch pad (only read when referenced)
+
+#### **Extended Context Files** (Tệp ngữ cảnh mở rộng)
+* **CLAUDE-workflows.md** - Process documentation and standard operating procedures (if exists)
+* **CLAUDE-integrations.md** - External system integration documentation (if exists)
+* **CLAUDE-security.md** - Security policies and access control rules (if exists)
+* **CLAUDE-performance.md** - Performance optimization strategies and benchmarks (if exists)
+* **CLAUDE-testing.md** - Testing strategies and quality assurance procedures (if exists)
 
 **Important:** Always reference the active context file first to understand what's currently being worked on and maintain session continuity.
 
