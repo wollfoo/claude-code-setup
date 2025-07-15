@@ -46,6 +46,7 @@ This project uses a structured memory bank system with specialized context files
 * **CLAUDE-decisions.md** - Architecture decisions and rationale (if exists)
 * **CLAUDE-troubleshooting.md** - Common issues and proven solutions (if exists)
 * **CLAUDE-config-variables.md** - Configuration variables reference (if exists)
+* **CLAUDE-codestyle.md** - Code style standards and bilingual documentation requirements (if exists)
 * **CLAUDE-temp.md** - Temporary scratch pad (only read when referenced)
 
 #### **Extended Context Files** (Tệp ngữ cảnh mở rộng)
