@@ -142,10 +142,6 @@ class UserManager:
         if not self._validate_email(email):
             raise ValidationError("Invalid email format")
         
-        # **Password Security Check** (kiểm tra bảo mật mật khẩu – strength requirements)
-        if not self._validate_password_strength(password):
-            raise ValidationError("Password does not meet security requirements")
-        
         # **Duplicate Check** (kiểm tra trùng lặp – ensure email uniqueness)
         if self._user_exists(email):
             raise DuplicateUserError(f"User with email {email} already exists")
@@ -708,9 +704,9 @@ export function errorHandler(
 }
 ```
 
-## Security Coding Standards
+## Input Validation
 
-### **Input Validation** (Kiểm tra đầu vào)
+### **Input Sanitization** (làm sạch đầu vào – prevent injection attacks)
 ```typescript
 /**
  * **Input Sanitization** (làm sạch đầu vào – prevent injection attacks)
@@ -733,93 +729,6 @@ class InputValidator {
     
     return true;
   }
-  
-  /**
-   * **SQL Injection Prevention** (ngăn chặn SQL injection – parameterized queries only)
-   */
-  static sanitizeForDatabase(input: string): string {
-    // **Never use string concatenation for SQL queries**
-    // **Không bao giờ dùng nối chuỗi cho SQL queries**
-    throw new Error('Use parameterized queries instead');
-  }
-  
-  /**
-   * **XSS Prevention** (ngăn chặn XSS – escape HTML characters)
-   */
-  static escapeHtml(input: string): string {
-    const htmlEscapeMap: Record<string, string> = {
-      '&': '&amp;',
-      '<': '&lt;',
-      '>': '&gt;',
-      '"': '&quot;',
-      "'": '&#x27;',
-      '/': '&#x2F;'
-    };
-    
-    return input.replace(/[&<>"'/]/g, (char) => htmlEscapeMap[char]);
-  }
-}
-```
-
-### **Secure Password Handling** (Xử lý mật khẩu bảo mật)
-```typescript
-import bcrypt from 'bcrypt';
-import crypto from 'crypto';
-
-/**
- * **Password Security Manager** (quản lý bảo mật mật khẩu – secure password operations)
- */
-class PasswordManager {
-  private static readonly SALT_ROUNDS = 12; // **Salt Rounds** (vòng salt – bcrypt complexity)
-  
-  /**
-   * **Hash Password** (mã hóa mật khẩu – secure one-way hashing)
-   */
-  static async hashPassword(password: string): Promise<string> {
-    // **Password Strength Check** (kiểm tra độ mạnh mật khẩu – enforce security requirements)
-    if (!this.validatePasswordStrength(password)) {
-      throw new ValidationError('Password does not meet security requirements');
-    }
-    
-    // **Secure Hashing** (mã hóa bảo mật – bcrypt with salt)
-    return await bcrypt.hash(password, this.SALT_ROUNDS);
-  }
-  
-  /**
-   * **Verify Password** (xác minh mật khẩu – compare hash with plaintext)
-   */
-  static async verifyPassword(password: string, hash: string): Promise<boolean> {
-    try {
-      return await bcrypt.compare(password, hash);
-    } catch (error) {
-      // **Security Log** (log bảo mật – record failed verification attempts)
-      logger.warn('Password verification failed', { error: error.message });
-      return false;
-    }
-  }
-  
-  /**
-   * **Password Strength Validation** (kiểm tra độ mạnh mật khẩu – enforce complexity rules)
-   */
-  static validatePasswordStrength(password: string): boolean {
-    // **Length Check** (kiểm tra độ dài – minimum 8 characters)
-    if (password.length < 8) return false;
-    
-    // **Complexity Check** (kiểm tra độ phức tạp – require mixed case, numbers, symbols)
-    const hasUpperCase = /[A-Z]/.test(password);
-    const hasLowerCase = /[a-z]/.test(password);
-    const hasNumbers = /\d/.test(password);
-    const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
-    
-    return hasUpperCase && hasLowerCase && hasNumbers && hasSpecialChar;
-  }
-  
-  /**
-   * **Generate Secure Token** (tạo token bảo mật – cryptographically secure random token)
-   */
-  static generateSecureToken(length: number = 32): string {
-    return crypto.randomBytes(length).toString('hex');
-  }
 }
 ```
 
@@ -831,9 +740,8 @@ Use `/check-best-practices` command to verify:
 
 1. **Documentation Standards** (tiêu chuẩn tài liệu – all functions have bilingual comments)
 2. **Error Handling** (xử lý lỗi – proper error types và handling patterns)
-3. **Security Practices** (thực hành bảo mật – input validation và secure coding)
-4. **Naming Conventions** (quy ước đặt tên – consistent naming across codebase)
-5. **Code Organization** (tổ chức code – proper file structure và imports)
+3. **Naming Conventions** (quy ước đặt tên – consistent naming across codebase)
+4. **Code Organization** (tổ chức code – proper file structure và imports)
 
 ### **Apply Thinking Pattern** (Áp dụng mẫu tư duy)
 
@@ -841,7 +749,6 @@ Use `/apply-thinking-to` command for:
 
 - **Code Refactoring** (tái cấu trúc code – improve structure và readability)
 - **Performance Optimization** (tối ưu hiệu suất – identify bottlenecks và improvements)
-- **Security Review** (đánh giá bảo mật – check for vulnerabilities và best practices)
 - **Documentation Updates** (cập nhật tài liệu – ensure docs match current implementation)
 
 ## Enforcement Strategies
@@ -869,16 +776,13 @@ Use `/apply-thinking-to` command for:
 
 1. ✅ **Bilingual Documentation** (tài liệu song ngữ – all comments follow standard syntax)
 2. ✅ **Error Handling** (xử lý lỗi – proper error types và propagation)
-3. ✅ **Security Validation** (kiểm tra bảo mật – input sanitization và secure practices)
-4. ✅ **Performance Considerations** (cân nhắc hiệu suất – efficient algorithms và resource usage)
-5. ✅ **Testing Coverage** (phạm vi kiểm thử – adequate unit và integration tests)
+3. ✅ **Testing Coverage** (phạm vi kiểm thử – adequate unit và integration tests)
 
 **Review Checklist** (danh sách kiểm tra review):
 
 - [ ] **Function Documentation** (tài liệu hàm – complete bilingual docs)
 - [ ] **Variable Naming** (đặt tên biến – clear và consistent naming)
 - [ ] **Error Boundaries** (ranh giới lỗi – proper error handling scopes)
-- [ ] **Security Inputs** (đầu vào bảo mật – all inputs validated và sanitized)
 - [ ] **Resource Cleanup** (dọn dẹp tài nguyên – proper memory và connection management)
 - [ ] **Test Coverage** (phạm vi test – critical paths covered by tests)
 
