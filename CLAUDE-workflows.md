@@ -22,16 +22,6 @@ touch CLAUDE-patterns.md
 touch CLAUDE-decisions.md
 touch CLAUDE-troubleshooting.md
 touch CLAUDE-config-variables.md
-
-# Step 4: Configure permissions
-cat > .claude/settings.json << EOF
-{
-  "permissions": {
-    "allow": ["Edit", "Write", "Bash(git:*)"],
-    "defaultMode": "acceptEdits"
-  }
-}
-EOF
 ```
 
 #### **Team Onboarding** (Onboarding nhóm)
@@ -73,7 +63,6 @@ EOF
 
 3. Quality Assurance (đảm bảo chất lượng)
    ├── Code review against patterns
-   ├── Security review if applicable
    ├── Performance validation
    └── Documentation updates
 ```
@@ -84,7 +73,6 @@ EOF
 
 #### **Pre-Review Checklist** (Checklist trước review)
 - [ ] **Code follows patterns** (code tuân thủ patterns) từ `CLAUDE-patterns.md`
-- [ ] **Security guidelines** (hướng dẫn bảo mật) được tuân thủ
 - [ ] **Documentation updated** (tài liệu đã cập nhật) nếu cần
 - [ ] **Tests written** (tests đã viết) cho new functionality
 - [ ] **Performance impact** (tác động hiệu suất) đã đánh giá
@@ -93,7 +81,6 @@ EOF
 ```
 1. Automated Checks (kiểm tra tự động)
    ├── Linting và formatting
-   ├── Security scanning
    ├── Test execution
    └── Performance benchmarks
 
@@ -105,7 +92,6 @@ EOF
 
 3. Approval Gates (cổng phê duyệt)
    ├── Technical lead approval
-   ├── Security review (if required)
    ├── Performance validation
    └── Documentation sign-off
 ```
@@ -119,9 +105,8 @@ EOF
 # Validation Steps
 1. Run full test suite
 2. Performance benchmarks
-3. Security scan
-4. Documentation review
-5. Backup current state
+3. Documentation review
+4. Backup current state
 ```
 
 #### **Deployment Process** (Quy trình triển khai)
@@ -210,11 +195,9 @@ Each environment:
 - **System Health Checks** (kiểm tra sức khỏe hệ thống)
 - **Log Review** (review logs) cho errors và warnings
 - **Performance Metrics** (chỉ số hiệu suất) validation
-- **Security Alerts** (cảnh báo bảo mật) review
 
 #### **Weekly Tasks** (Tác vụ hàng tuần)
 - **Dependency Updates** (cập nhật dependencies) review
-- **Security Patches** (bản vá bảo mật) assessment
 - **Performance Trends** (xu hướng hiệu suất) analysis
 - **Documentation Updates** (cập nhật tài liệu) review
 
@@ -222,7 +205,6 @@ Each environment:
 - **Architecture Review** (review kiến trúc) sessions
 - **Technical Debt** (nợ kỹ thuật) assessment
 - **Capacity Planning** (lập kế hoạch năng lực) updates
-- **Security Audit** (kiểm toán bảo mật) scheduling
 
 ### **Update Workflow** (Quy trình cập nhật)
 ```
@@ -254,19 +236,16 @@ Each environment:
 # Standard Integration Process
 1. Server Assessment (đánh giá server)
    ├── Capability analysis
-   ├── Security review
    ├── Performance impact
    └── Compatibility check
 
 2. Configuration Setup (thiết lập cấu hình)
    ├── Environment variables
-   ├── Permission configuration
    ├── Network settings
    └── Authentication setup
 
 3. Testing Phase (giai đoạn kiểm thử)
    ├── Functionality testing
-   ├── Security validation
    ├── Performance benchmarking
    └── Integration testing
 
@@ -292,19 +271,16 @@ Each environment:
 Commit Level:
 ├── Linting compliance
 ├── Unit test coverage > 80%
-├── Security scan pass
 └── Code review approval
 
 Branch Level:
 ├── Integration tests pass
 ├── Performance benchmarks meet SLA
 ├── Documentation complete
-└── Security review complete
 
 Release Level:
 ├── Full regression test suite
 ├── Load testing validation
-├── Security penetration testing
 └── User acceptance testing
 ```
 
