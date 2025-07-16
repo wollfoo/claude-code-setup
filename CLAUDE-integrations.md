@@ -1,531 +1,541 @@
-# CLAUDE-integrations.md
+# CLAUDE-integrations.md - SuperClaude Integration Guide
 
-**External System Integration** (tích hợp hệ thống ngoài) - Documentation cho **API connections** (kết nối API), **third-party tools** (công cụ bên thứ ba), và **service dependencies** (phụ thuộc dịch vụ).
+Comprehensive integration guide for Claude Code SuperClaude framework.
 
-## 🔌 **MCP Server Integrations** (Tích hợp MCP Server)
+## 🔌 Integration Fundamentals
 
-### **1. Gemini CLI MCP** - Google AI Integration
+### Core Integration Principles
+- **Modular Design**: Loose coupling with standardized interfaces
+- **Performance Focus**: Efficient data flows with minimal latency
+- **Scalability**: Horizontal scaling support with distributed capabilities
+- **Security First**: Built-in security patterns and validation
+- **Observability**: Comprehensive logging and monitoring
 
-#### **Configuration** (Cấu hình)
-```bash
-# Environment Setup
-export GEMINI_API_KEY="your_gemini_api_key"
-export OPENROUTER_API_KEY="your_openrouter_key"
+### Integration Layers
+1. **Core Layer**: Direct framework integrations
+2. **MCP Layer**: Multi-Cloud Provider server integrations
+3. **Tool Layer**: Command and tool extensions
+4. **Persona Layer**: Specialized AI personality integrations
+5. **Workflow Layer**: Automated process orchestrations
 
-# Server Registration
-claude mcp add gemini-cli \
-  /path/to/.venv/bin/python \
-  /path/to/mcp_server.py \
-  -s user \
-  -e GEMINI_API_KEY="${GEMINI_API_KEY}" \
-  -e OPENROUTER_API_KEY="${OPENROUTER_API_KEY}"
+## 🧠 Intelligent Integration Patterns
+
+### Auto-Detection System
+```yaml
+integration_detection:
+  keywords: [integrate, connect, setup, configure, api, service]
+  patterns:
+    - cloud: [aws, azure, gcp, cloudflare]
+    - database: [sql, nosql, redis, mongodb, postgresql]
+    - monitoring: [prometheus, grafana, datadog, newrelic]
+    - ci_cd: [github actions, jenkins, circleci]
+    - auth: [oauth, jwt, sso, saml]
+  confidence_threshold: 0.7
 ```
 
-#### **Capabilities** (Khả năng)
-- **AI Model Access** (truy cập mô hình AI) - Gemini Pro, Gemini Flash
-- **Multi-Modal Support** (hỗ trợ đa phương thức) - Text, image, audio processing
-- **Streaming Responses** (phản hồi streaming) - Real-time output
-- **Function Calling** (gọi hàm) - Tool integration capabilities
-
-#### **Use Cases** (Trường hợp sử dụng)
-- **Alternative AI Provider** (nhà cung cấp AI thay thế) - Backup khi Anthropic unavailable
-- **Specialized Tasks** (tác vụ chuyên biệt) - Google-specific integrations
-- **Cost Optimization** (tối ưu chi phí) - Different pricing models
-- **Model Comparison** (so sánh mô hình) - A/B testing different AI approaches
-
----
-
-### **2. Cloudflare Documentation MCP** - Knowledge Base Access
-
-#### **Configuration** (Cấu hình)
-```bash
-# SSE Transport Setup
-claude mcp add --transport sse cf-docs \
-  https://docs.mcp.cloudflare.com/sse \
-  -s user
-```
-
-#### **Capabilities** (Khả năng)
-- **Vectorized Documentation Search** (tìm kiếm tài liệu vector hóa) - Semantic search
-- **Real-time Updates** (cập nhật thời gian thực) - Always current documentation
-- **Context-Aware Retrieval** (truy xuất nhận thức ngữ cảnh) - Relevant information
-- **Multi-Language Support** (hỗ trợ đa ngôn ngữ) - Documentation in various languages
-
-#### **Integration Benefits** (Lợi ích tích hợp)
-- **Enhanced Knowledge Base** (cơ sở kiến thức tăng cường) - Access to Cloudflare expertise
-- **Reduced Context Switching** (giảm chuyển đổi ngữ cảnh) - Information within workflow
-- **Updated Technical Information** (thông tin kỹ thuật cập nhật) - Latest best practices
-- **Implementation Examples** (ví dụ triển khai) - Working code samples
-
----
-
-### **3. Context 7 MCP** - Context Management
-
-#### **Configuration** (Cấu hình)
-```bash
-# Context Management Setup
-claude mcp add context7 \
-  /path/to/context7-server \
-  -s project \
-  --config context7-config.json
-```
-
-#### **Context Management Features** (Tính năng quản lý ngữ cảnh)
-- **Session Persistence** (bảo tồn phiên) - Context across conversations
-- **Smart Summarization** (tóm tắt thông minh) - Key information extraction
-- **Cross-Reference Linking** (liên kết tham chiếu chéo) - Related content discovery
-- **Priority-Based Retrieval** (truy xuất theo độ ưu tiên) - Most relevant first
-
-#### **Advanced Capabilities** (Khả năng nâng cao)
-- **Context Compression** (nén ngữ cảnh) - Efficient token usage
-- **Semantic Indexing** (lập chỉ mục ngữ nghĩa) - Content organization
-- **Temporal Awareness** (nhận thức thời gian) - Time-based relevance
-- **Multi-Project Support** (hỗ trợ đa dự án) - Isolated contexts
-
----
-
-### **4. Notion MCP** - Workspace Integration
-
-#### **Configuration** (Cấu hình)
-```bash
-# Notion API Setup
-export NOTION_API_KEY="ntn_your_notion_integration_token"
-
-# Server Registration
-claude mcp add-json notionApi '{
-  "type": "stdio",
-  "command": "npx",
-  "args": ["-y", "@notionhq/notion-mcp-server"],
-  "env": {
-    "OPENAPI_MCP_HEADERS": "{\"Authorization\": \"Bearer ${NOTION_API_KEY}\", \"Notion-Version\": \"2022-06-28\"}"
-  }
-}' -s user
-```
-
-#### **Workspace Capabilities** (Khả năng không gian làm việc)
-- **Database Integration** (tích hợp cơ sở dữ liệu) - Read/write Notion databases
-- **Page Management** (quản lý trang) - Create, update, archive pages
-- **Block Manipulation** (thao tác khối) - Rich content editing
-- **Template System** (hệ thống template) - Standardized page creation
-
-#### **Business Value** (Giá trị kinh doanh)
-- **Knowledge Management** (quản lý kiến thức) - Centralized documentation
-- **Project Tracking** (theo dõi dự án) - Task và milestone management
-- **Team Collaboration** (hợp tác nhóm) - Shared workspace integration
-- **Reporting Automation** (tự động báo cáo) - Automated status updates
-
----
-
-## 🔗 **API Integrations** (Tích hợp API)
-
-### **Authentication Patterns** (Mẫu xác thực)
-
-#### **API Key Authentication** (Xác thực API Key)
-```bash
-# Environment Variable Method
-export SERVICE_API_KEY="your_api_key"
-
-# Header-based Authentication
-curl -H "Authorization: Bearer ${SERVICE_API_KEY}" \
-     -H "Content-Type: application/json" \
-     https://api.service.com/endpoint
-```
-
-#### **OAuth 2.0 Flow** (Luồng OAuth 2.0)
-```bash
-# OAuth Configuration
-export OAUTH_CLIENT_ID="your_client_id"
-export OAUTH_CLIENT_SECRET="your_client_secret"
-export OAUTH_REDIRECT_URI="http://localhost:8080/callback"
-
-# Token Refresh Automation
-oauth_refresh_token() {
-  curl -X POST https://oauth.service.com/token \
-    -d "grant_type=refresh_token" \
-    -d "refresh_token=${REFRESH_TOKEN}" \
-    -d "client_id=${OAUTH_CLIENT_ID}" \
-    -d "client_secret=${OAUTH_CLIENT_SECRET}"
-}
-```
-
-#### **Service Account Authentication** (Xác thực Service Account)
-```json
-{
-  "type": "service_account",
-  "project_id": "your-project",
-  "private_key_id": "key-id",
-  "private_key": "-----BEGIN PRIVATE KEY-----\n...\n-----END PRIVATE KEY-----\n",
-  "client_email": "service@your-project.iam.gserviceaccount.com",
-  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-  "token_uri": "https://oauth2.googleapis.com/token"
-}
-```
-
----
-
-### **External Service Integrations** (Tích hợp dịch vụ ngoài)
-
-#### **GitHub Integration** (Tích hợp GitHub)
-```bash
-# GitHub CLI Setup
-gh auth login --with-token < github_token.txt
-
-# Repository Operations
-gh repo create my-new-repo --private
-gh issue create --title "Bug Report" --body "Description"
-gh pr create --title "Feature" --body "Implementation details"
-
-# Webhook Configuration
-gh api repos/:owner/:repo/hooks \
-  --method POST \
-  --field name=web \
-  --field config[url]=https://your-webhook-endpoint.com \
-  --field config[content_type]=json \
-  --field events='["push","pull_request"]'
-```
-
-#### **Slack Integration** (Tích hợp Slack)
-```bash
-# Slack App Configuration
-export SLACK_BOT_TOKEN="xoxb-your-bot-token"
-export SLACK_SIGNING_SECRET="your-signing-secret"
-
-# Message Posting
-slack_notify() {
-  curl -X POST https://slack.com/api/chat.postMessage \
-    -H "Authorization: Bearer ${SLACK_BOT_TOKEN}" \
-    -H "Content-Type: application/json" \
-    -d "{
-      \"channel\": \"#general\",
-      \"text\": \"$1\",
-      \"username\": \"Claude Code Bot\"
-    }"
-}
-
-# Interactive Components
-slack_interactive_message() {
-  curl -X POST https://slack.com/api/chat.postMessage \
-    -H "Authorization: Bearer ${SLACK_BOT_TOKEN}" \
-    -H "Content-Type: application/json" \
-    -d '{
-      "channel": "#dev-alerts",
-      "blocks": [
-        {
-          "type": "section",
-          "text": {"type": "mrkdwn", "text": "Deployment completed!"},
-          "accessory": {
-            "type": "button",
-            "text": {"type": "plain_text", "text": "View Logs"},
-            "action_id": "view_logs"
-          }
-        }
-      ]
-    }'
-}
-```
-
-#### **Jira Integration** (Tích hợp Jira)
-```bash
-# Jira API Configuration
-export JIRA_URL="https://your-domain.atlassian.net"
-export JIRA_USERNAME="your-email@company.com"
-export JIRA_API_TOKEN="your-api-token"
-
-# Issue Creation
-create_jira_issue() {
-  curl -X POST "${JIRA_URL}/rest/api/3/issue" \
-    -u "${JIRA_USERNAME}:${JIRA_API_TOKEN}" \
-    -H "Content-Type: application/json" \
-    -d '{
-      "fields": {
-        "project": {"key": "PROJ"},
-        "summary": "'"$1"'",
-        "description": "'"$2"'",
-        "issuetype": {"name": "Task"}
-      }
-    }'
-}
-
-# Issue Transition Automation
-transition_issue() {
-  local issue_key=$1
-  local transition_id=$2
+### Integration Decision Matrix
+```yaml
+integration_type:
+  simple: {complexity: low, steps: 1-3, time: <30min}
+  moderate: {complexity: medium, steps: 4-7, time: 30-90min}
+  complex: {complexity: high, steps: 8+, time: >90min}
   
-  curl -X POST "${JIRA_URL}/rest/api/3/issue/${issue_key}/transitions" \
-    -u "${JIRA_USERNAME}:${JIRA_API_TOKEN}" \
-    -H "Content-Type: application/json" \
-    -d "{\"transition\":{\"id\":\"${transition_id}\"}}"
-}
+routing:
+  simple: direct implementation
+  moderate: sequential planning
+  complex: wave orchestration
 ```
+
+## ☁️ Cloud Provider Integrations
+
+### AWS Integration
+```yaml
+aws_services:
+  - s3: {use_case: storage, integration_level: high}
+  - ec2: {use_case: compute, integration_level: medium}
+  - lambda: {use_case: serverless, integration_level: high}
+  - rds: {use_case: database, integration_level: high}
+  - cloudwatch: {use_case: monitoring, integration_level: medium}
+```
+
+#### AWS Setup Workflow
+1. **Credential Configuration** (cấu hình xác thực – setup AWS access keys)
+2. **Service Discovery** (phát hiện dịch vụ – auto-detect available services)
+3. **Resource Provisioning** (cung cấp tài nguyên – automated setup)
+4. **Integration Testing** (kiểm tra tích hợp – validation checks)
+
+### Azure Integration
+```yaml
+azure_services:
+  - blob_storage: {use_case: storage, integration_level: high}
+  - virtual_machines: {use_case: compute, integration_level: medium}
+  - functions: {use_case: serverless, integration_level: high}
+  - cosmos_db: {use_case: database, integration_level: high}
+  - monitor: {use_case: monitoring, integration_level: medium}
+```
+
+#### Azure Setup Workflow
+1. **Authentication Setup** (thiết lập xác thực – Azure AD integration)
+2. **Resource Group Management** (quản lý nhóm tài nguyên – organization)
+3. **Service Provisioning** (cung cấp dịch vụ – automated deployment)
+4. **Monitoring Configuration** (cấu hình giám sát – metrics and alerts)
+
+### GCP Integration
+```yaml
+gcp_services:
+  - cloud_storage: {use_case: storage, integration_level: high}
+  - compute_engine: {use_case: compute, integration_level: medium}
+  - cloud_functions: {use_case: serverless, integration_level: high}
+  - firestore: {use_case: database, integration_level: high}
+  - monitoring: {use_case: monitoring, integration_level: medium}
+```
+
+#### GCP Setup Workflow
+1. **Project Configuration** (cấu hình project – GCP project setup)
+2. **API Enablement** (kích hoạt API – service activation)
+3. **Resource Creation** (tạo tài nguyên – automated provisioning)
+4. **Integration Validation** (kiểm tra tích hợp – testing suite)
+
+### Cloudflare Integration
+```yaml
+cloudflare_services:
+  - workers: {use_case: edge_compute, integration_level: high}
+  - pages: {use_case: static_hosting, integration_level: medium}
+  - r2: {use_case: storage, integration_level: high}
+  - kv: {use_case: key_value, integration_level: high}
+  - durable_objects: {use_case: stateful, integration_level: medium}
+```
+
+#### Cloudflare Setup Workflow
+1. **Account Configuration** (cấu hình tài khoản – API token setup)
+2. **Zone Management** (quản lý zone – domain configuration)
+3. **Worker Deployment** (triển khai worker – edge function setup)
+4. **Performance Monitoring** (giám sát hiệu suất – analytics integration)
+
+## 🗄️ Database Integrations
+
+### SQL Databases
+```yaml
+sql_databases:
+  - postgresql: {orm: prisma, driver: pg}
+  - mysql: {orm: sequelize, driver: mysql2}
+  - sqlite: {orm: typeorm, driver: sqlite3}
+```
+
+#### SQL Integration Workflow
+1. **Connection Setup** (thiết lập kết nối – configuration and pooling)
+2. **Schema Management** (quản lý schema – migrations and modeling)
+3. **Query Optimization** (tối ưu query – indexing and performance)
+4. **Data Validation** (kiểm tra dữ liệu – constraints and triggers)
+
+### NoSQL Databases
+```yaml
+nosql_databases:
+  - mongodb: {odm: mongoose, driver: mongodb}
+  - redis: {client: ioredis, use_case: caching}
+  - cassandra: {driver: cassandra-driver, use_case: timeseries}
+```
+
+#### NoSQL Integration Workflow
+1. **Client Configuration** (cấu hình client – connection parameters)
+2. **Data Modeling** (mô hình hóa dữ liệu – schema design)
+3. **Query Patterns** (mẫu query – efficient access patterns)
+4. **Scaling Strategies** (chiến lược scaling – sharding and replication)
+
+## 📊 Monitoring & Observability Integrations
+
+### Prometheus & Grafana
+```yaml
+prometheus:
+  metrics: [cpu, memory, requests, errors]
+  alerts: [high_load, error_rate, resource_exhaustion]
+grafana:
+  dashboards: [system_overview, performance_metrics, error_analysis]
+```
+
+#### Monitoring Setup Workflow
+1. **Metric Collection** (thu thập metric – instrumentation)
+2. **Dashboard Creation** (tạo dashboard – visualization)
+3. **Alert Configuration** (cấu hình cảnh báo – thresholds and notifications)
+4. **Log Integration** (tích hợp log – centralized logging)
+
+### Datadog Integration
+```yaml
+datadog:
+  monitors: [apm, infrastructure, synthetics]
+  features: [tracing, profiling, rum]
+```
+
+#### Datadog Setup Workflow
+1. **Agent Installation** (cài đặt agent – host monitoring)
+2. **APM Configuration** (cấu hình APM – application performance)
+3. **Metric Submission** (gửi metric – custom metrics)
+4. **Alert Setup** (thiết lập cảnh báo – anomaly detection)
+
+## 🔄 CI/CD Integrations
+
+### GitHub Actions
+```yaml
+github_actions:
+  workflows: [build, test, deploy, lint]
+  triggers: [push, pull_request, schedule]
+```
+
+#### GitHub Actions Workflow
+1. **Workflow Definition** (định nghĩa workflow – YAML configuration)
+2. **Job Configuration** (cấu hình job – steps and runners)
+3. **Secret Management** (quản lý secret – secure variables)
+4. **Artifact Handling** (xử lý artifact – build outputs)
+
+### Jenkins Integration
+```yaml
+jenkins:
+  pipelines: [multibranch, scripted, declarative]
+  plugins: [docker, kubernetes, git]
+```
+
+#### Jenkins Setup Workflow
+1. **Pipeline Creation** (tạo pipeline – Jenkinsfile)
+2. **Agent Configuration** (cấu hình agent – nodes and labels)
+3. **Plugin Installation** (cài đặt plugin – extensions)
+4. **Webhook Setup** (thiết lập webhook – GitHub integration)
+
+## 🔐 Authentication & Authorization Integrations
+
+### OAuth 2.0 Integration
+```yaml
+oauth_providers:
+  - google: {scopes: [profile, email]}
+  - github: {scopes: [user, repo]}
+  - microsoft: {scopes: [user.read, mail.read]}
+```
+
+#### OAuth Workflow
+1. **Provider Registration** (đăng ký provider – app creation)
+2. **Flow Implementation** (triển khai flow – authorization code)
+3. **Token Management** (quản lý token – storage and refresh)
+4. **User Mapping** (ánh xạ user – profile integration)
+
+### JWT Integration
+```yaml
+jwt_config:
+  algorithm: RS256
+  expiry: 3600
+  claims: [id, roles, permissions]
+```
+
+#### JWT Workflow
+1. **Key Generation** (tạo key – public/private pair)
+2. **Token Signing** (ký token – creation)
+3. **Validation Middleware** (middleware xác thực – verification)
+4. **Claim Management** (quản lý claim – custom attributes)
+
+## 🔒 Security Integrations (Tích hợp bảo mật)
+
+### Vulnerability Scanning
+```yaml
+scanners:
+  - snyk: {languages: [js, python, java]}
+  - trivy: {types: [image, repo, config]}
+  - owasp_zap: {mode: active_scan}
+```
+
+#### Scanning Workflow
+1. **Tool Installation** (cài đặt công cụ – setup)
+2. **Scan Configuration** (cấu hình scan – targets and rules)
+3. **Report Generation** (tạo báo cáo – results analysis)
+4. **Remediation Tracking** (theo dõi khắc phục – issue management)
+
+### Secrets Management
+```yaml
+secrets_managers:
+  - hashicorp: {vault: true}
+  - aws_secrets_manager: {region: us-east-1}
+  - azure_key_vault: {tenant_id: uuid}
+```
+
+#### Secrets Workflow
+1. **Vault Setup** (thiết lập vault – initialization)
+2. **Secret Storage** (lưu trữ secret – encryption)
+3. **Access Control** (kiểm soát truy cập – policies)
+4. **Rotation Policies** (chính sách rotation – automated updates)
+
+## 📈 Analytics & Reporting Integrations
+
+### Google Analytics
+```yaml
+ga_config:
+  tracking_id: UA-XXXXX-X
+  events: [pageview, click, submit]
+```
+
+#### GA Workflow
+1. **Tracking Code** (mã tracking – implementation)
+2. **Event Configuration** (cấu hình event – custom events)
+3. **Report Setup** (thiết lập báo cáo – dashboards)
+4. **Data Analysis** (phân tích dữ liệu – insights)
+
+### Mixpanel Integration
+```yaml
+mixpanel:
+  project_token: token
+  events: [user_signup, feature_use, error_occurrence]
+```
+
+#### Mixpanel Workflow
+1. **SDK Installation** (cài đặt SDK – client setup)
+2. **Event Tracking** (theo dõi event – implementation)
+3. **User Profiles** (hồ sơ user – properties)
+4. **Funnel Analysis** (phân tích funnel – conversion tracking)
+
+## 🤖 AI & ML Integrations
+
+### Hugging Face Integration
+```yaml
+huggingface:
+  models: [bert, gpt2, diffusion]
+  tasks: [nlp, generation, cv]
+```
+
+#### HF Workflow
+1. **Model Selection** (chọn model – repository)
+2. **Inference Setup** (thiết lập inference – pipeline)
+3. **Fine-Tuning** (tinh chỉnh – training)
+4. **Deployment** (triển khai – serving)
+
+### TensorFlow Integration
+```yaml
+tensorflow:
+  version: 2.x
+  accelerators: [gpu, tpu]
+```
+
+#### TF Workflow
+1. **Environment Setup** (thiết lập môi trường – dependencies)
+2. **Model Building** (xây dựng model – layers)
+3. **Training Loop** (vòng lặp huấn luyện – epochs)
+4. **Evaluation** (đánh giá – metrics)
+
+## 📱 Mobile Integrations
+
+### React Native Integration
+```yaml
+react_native:
+  platforms: [ios, android]
+  modules: [navigation, storage, camera]
+```
+
+#### RN Workflow
+1. **Project Init** (khởi tạo project – setup)
+2. **Component Development** (phát triển component – UI)
+3. **Native Modules** (module native – bridges)
+4. **Build & Deploy** (build và deploy – app stores)
+
+### Flutter Integration
+```yaml
+flutter:
+  channels: stable
+  packages: [dio, provider, sqflite]
+```
+
+#### Flutter Workflow
+1. **SDK Setup** (thiết lập SDK – installation)
+2. **Widget Tree** (cây widget – UI structure)
+3. **State Management** (quản lý state – providers)
+4. **Platform Channels** (kênh platform – native integration)
+
+## 🌐 Web Framework Integrations
+
+### React Integration
+```yaml
+react:
+  version: 18
+  state_management: [redux, context]
+  styling: [css_modules, styled_components]
+```
+
+#### React Workflow
+1. **Project Setup** (thiết lập project – create-react-app)
+2. **Component Hierarchy** (cấu trúc component – tree)
+3. **State Handling** (xử lý state – hooks)
+4. **Routing** (định tuyến – react-router)
+
+### Vue.js Integration
+```yaml
+vue:
+  version: 3
+  stores: pinia
+  ui: [vuetify, element-plus]
+```
+
+#### Vue Workflow
+1. **CLI Setup** (thiết lập CLI – vue create)
+2. **Component Composition** (tổ hợp component – composables)
+3. **Reactivity System** (hệ thống reactivity – refs)
+4. **Directive Usage** (sử dụng directive – custom directives)
+
+## 🔄 API Integrations
+
+### REST API Integration
+```yaml
+rest:
+  methods: [GET, POST, PUT, DELETE]
+  auth: [basic, bearer, oauth]
+```
+
+#### REST Workflow
+1. **Endpoint Design** (thiết kế endpoint – routes)
+2. **Request Handling** (xử lý request – middleware)
+3. **Response Formatting** (định dạng response – JSON)
+4. **Error Management** (quản lý lỗi – status codes)
+
+### GraphQL Integration
+```yaml
+graphql:
+  schema: schema-first
+  resolvers: [query, mutation, subscription]
+```
+
+#### GraphQL Workflow
+1. **Schema Definition** (định nghĩa schema – types)
+2. **Resolver Implementation** (triển khai resolver – functions)
+3. **Query Optimization** (tối ưu query – dataloader)
+4. **Subscription Setup** (thiết lập subscription – real-time)
+
+## 🎯 Use Case Integrations
+
+### E-commerce Integration
+```yaml
+ecommerce:
+  platforms: [shopify, woocommerce, magento]
+  features: [cart, payment, inventory]
+```
+
+#### E-commerce Workflow
+1. **Store Setup** (thiết lập cửa hàng – configuration)
+2. **Product Management** (quản lý sản phẩm – catalog)
+3. **Payment Gateway** (cổng thanh toán – integration)
+4. **Order Processing** (xử lý đơn hàng – fulfillment)
+
+### IoT Integration
+```yaml
+iot:
+  protocols: [mqtt, http, websocket]
+  devices: [sensors, actuators, gateways]
+```
+
+#### IoT Workflow
+1. **Device Registration** (đăng ký thiết bị – provisioning)
+2. **Data Ingestion** (thu thập dữ liệu – streams)
+3. **Command Handling** (xử lý lệnh – control)
+4. **Analytics** (phân tích – dashboards)
+
+## 🔧 Advanced Integration Techniques
+
+### Wave-Enabled Integrations
+```yaml
+wave_integrations:
+  phases: [discovery, planning, implementation, validation, optimization]
+  auto_scaling: true
+  parallel_execution: max_5
+```
+
+#### Wave Workflow
+1. **Phase Decomposition** (phân tích giai đoạn – break down)
+2. **Task Distribution** (phân phối nhiệm vụ – delegation)
+3. **Progress Monitoring** (giám sát tiến độ – checkpoints)
+4. **Final Synthesis** (tổng hợp cuối – aggregation)
+
+### Sub-Agent Delegated Integrations
+```yaml
+sub_agent:
+  delegation_types: [file, folder, task]
+  max_agents: 7
+  coordination: centralized
+```
+
+#### Sub-Agent Workflow
+1. **Task Analysis** (phân tích nhiệm vụ – scoping)
+2. **Agent Assignment** (giao agent – matching)
+3. **Execution Monitoring** (giám sát thực thi – progress)
+4. **Result Aggregation** (tổng hợp kết quả – merging)
+
+## 📊 Integration Metrics
+
+### Success Criteria
+```yaml
+metrics:
+  latency: <500ms
+  success_rate: >99%
+  error_rate: <0.1%
+  throughput: >100 ops/sec
+```
+
+### Monitoring Dashboard
+```yaml
+dashboard:
+  views: [overview, performance, errors, usage]
+  alerts: [threshold, anomaly, predictive]
+```
+
+## 🚀 Deployment Integrations
+
+### Kubernetes Integration
+```yaml
+kubernetes:
+  resources: [deployments, services, ingresses]
+  scaling: hpa
+```
+
+#### K8s Workflow
+1. **Manifest Creation** (tạo manifest – YAML)
+2. **Cluster Deployment** (triển khai cluster – kubectl)
+3. **Scaling Configuration** (cấu hình scaling – autoscaling)
+4. **Monitoring Setup** (thiết lập giám sát – prometheus)
+
+### Docker Integration
+```yaml
+docker:
+  compose: true
+  build: multi-stage
+```
+
+#### Docker Workflow
+1. **Dockerfile Creation** (tạo Dockerfile – build instructions)
+2. **Image Building** (build image – docker build)
+3. **Container Orchestration** (quản lý container – compose/swarm)
+4. **Registry Push** (push registry – deployment)
+
+## 📝 Documentation
+
+### Integration Templates
+```yaml
+template:
+  structure: [overview, setup, configuration, usage, troubleshooting]
+  format: markdown
+```
+
+### Best Practices
+1. **Modular Configuration** (cấu hình module – separation of concerns)
+2. **Error Resilience** (khả năng phục hồi lỗi – graceful degradation)
+3. **Performance Tuning** (tối ưu hiệu suất – profiling)
+4. **Version Control** (kiểm soát phiên bản – semantic versioning)
+
+## 🔄 Update & Maintenance
+
+### Version Compatibility
+```yaml
+compatibility:
+  breaking_changes: documented
+  migration_guides: provided
+```
+
+### Maintenance Workflow
+1. **Dependency Updates** (cập nhật phụ thuộc – automated)
+2. **Integration Testing** (kiểm tra tích hợp – CI)
+3. **Documentation Sync** (đồng bộ tài liệu – automated)
+4. **Performance Audits** (kiểm toán hiệu suất – periodic)
 
 ---
 
-## 📊 **Database Integrations** (Tích hợp cơ sở dữ liệu)
 
-### **PostgreSQL Integration** (Tích hợp PostgreSQL)
-```bash
-# Connection Configuration
-export PGHOST="localhost"
-export PGPORT="5432"
-export PGDATABASE="your_database"
-export PGUSER="your_username"
-export PGPASSWORD="your_password"
-
-# Connection Pool Setup
-export PGPOOL_MAX_CONNECTIONS="20"
-export PGPOOL_IDLE_TIMEOUT="30000"
-export PGPOOL_CONNECTION_TIMEOUT="10000"
-
-# SSL Configuration
-export PGSSLMODE="require"
-export PGSSLCERT="/path/to/client-cert.pem"
-export PGSSLKEY="/path/to/client-key.pem"
-export PGSSLROOTCERT="/path/to/ca-cert.pem"
-```
-
-### **Redis Integration** (Tích hợp Redis)
-```bash
-# Redis Configuration
-export REDIS_URL="redis://localhost:6379"
-export REDIS_PASSWORD="your_redis_password"
-export REDIS_DB="0"
-
-# Clustering Setup
-export REDIS_CLUSTER_NODES="redis1:6379,redis2:6379,redis3:6379"
-export REDIS_CLUSTER_REQUIRE_FULL_COVERAGE="false"
-
-# Connection Pool
-export REDIS_POOL_SIZE="10"
-export REDIS_POOL_TIMEOUT="5000"
-```
-
-### **MongoDB Integration** (Tích hợp MongoDB)
-```bash
-# MongoDB Connection
-export MONGODB_URI="mongodb://username:password@localhost:27017/database"
-export MONGODB_MAX_POOL_SIZE="100"
-export MONGODB_MIN_POOL_SIZE="5"
-export MONGODB_MAX_IDLE_TIME="30000"
-
-# Replica Set Configuration
-export MONGODB_REPLICA_SET="rs0"
-export MONGODB_READ_PREFERENCE="secondaryPreferred"
-export MONGODB_WRITE_CONCERN="majority"
-```
-
----
-
-## 🌐 **Cloud Platform Integrations** (Tích hợp nền tảng đám mây)
-
-### **AWS Integration** (Tích hợp AWS)
-```bash
-# AWS CLI Configuration
-export AWS_ACCESS_KEY_ID="your_access_key"
-export AWS_SECRET_ACCESS_KEY="your_secret_key"
-export AWS_DEFAULT_REGION="us-west-2"
-export AWS_PROFILE="your_profile"
-
-# S3 Integration
-aws_s3_upload() {
-  aws s3 cp "$1" "s3://your-bucket/$2" \
-    --storage-class STANDARD_IA \
-    --server-side-encryption AES256
-}
-
-# Lambda Function Deployment
-aws_lambda_deploy() {
-  aws lambda update-function-code \
-    --function-name your-function \
-    --zip-file fileb://deployment.zip \
-    --publish
-}
-
-# CloudFormation Deployment
-aws_cfn_deploy() {
-  aws cloudformation deploy \
-    --template-file template.yaml \
-    --stack-name your-stack \
-    --parameter-overrides Environment=production \
-    --capabilities CAPABILITY_IAM
-}
-```
-
-### **Google Cloud Integration** (Tích hợp Google Cloud)
-```bash
-# GCP Authentication
-export GOOGLE_APPLICATION_CREDENTIALS="/path/to/service-account.json"
-export GOOGLE_CLOUD_PROJECT="your-project-id"
-
-# Cloud Storage Operations
-gsutil_upload() {
-  gsutil -m cp -r "$1" "gs://your-bucket/$2"
-}
-
-# Cloud Functions Deployment
-gcp_function_deploy() {
-  gcloud functions deploy your-function \
-    --runtime python39 \
-    --trigger-http \
-    --allow-unauthenticated \
-    --set-env-vars "ENV=production"
-}
-
-# BigQuery Integration
-bq_query() {
-  bq query --use_legacy_sql=false \
-    --max_rows=1000 \
-    "$1"
-}
-```
-
-### **Azure Integration** (Tích hợp Azure)
-```bash
-# Azure CLI Authentication
-az login --service-principal \
-  --username "$AZURE_CLIENT_ID" \
-  --password "$AZURE_CLIENT_SECRET" \
-  --tenant "$AZURE_TENANT_ID"
-
-# Storage Account Operations
-az_storage_upload() {
-  az storage blob upload \
-    --account-name your-storage-account \
-    --container-name your-container \
-    --file "$1" \
-    --name "$2"
-}
-
-# Function App Deployment
-az_function_deploy() {
-  az functionapp deployment source config-zip \
-    --resource-group your-resource-group \
-    --name your-function-app \
-    --src deployment.zip
-}
-```
-
----
-
-## 🔧 **Monitoring và Observability** (Giám sát và quan sát)
-
-### **Application Performance Monitoring** (Giám sát hiệu suất ứng dụng)
-
-#### **Datadog Integration** (Tích hợp Datadog)
-```bash
-# Datadog Agent Configuration
-export DD_API_KEY="your_datadog_api_key"
-export DD_APP_KEY="your_datadog_app_key"
-export DD_SITE="datadoghq.com"
-
-# Custom Metrics
-datadog_metric() {
-  curl -X POST "https://api.${DD_SITE}/api/v1/series" \
-    -H "Content-Type: application/json" \
-    -H "DD-API-KEY: ${DD_API_KEY}" \
-    -d '{
-      "series": [{
-        "metric": "claude.code.performance",
-        "points": [['$(date +%s)', '$1']],
-        "tags": ["environment:production"]
-      }]
-    }'
-}
-```
-
-#### **New Relic Integration** (Tích hợp New Relic)
-```bash
-# New Relic Configuration
-export NEW_RELIC_LICENSE_KEY="your_license_key"
-export NEW_RELIC_APP_NAME="Claude Code Application"
-export NEW_RELIC_LOG_LEVEL="info"
-
-# Custom Events
-newrelic_event() {
-  curl -X POST https://insights-collector.newrelic.com/v1/accounts/YOUR_ACCOUNT_ID/events \
-    -H "Content-Type: application/json" \
-    -H "X-Insert-Key: YOUR_INSERT_KEY" \
-    -d '{
-      "eventType": "ClaudeCodeEvent",
-      "action": "'"$1"'",
-      "duration": '$2',
-      "timestamp": '$(date +%s)'
-    }'
-}
-```
-
-### **Log Management** (Quản lý log)
-
-#### **ELK Stack Integration** (Tích hợp ELK Stack)
-```bash
-# Elasticsearch Configuration
-export ELASTICSEARCH_URL="http://localhost:9200"
-export ELASTICSEARCH_USERNAME="elastic"
-export ELASTICSEARCH_PASSWORD="your_password"
-
-# Logstash Pipeline
-logstash_send() {
-  echo "$1" | nc localhost 5000
-}
-
-# Kibana Dashboard
-export KIBANA_URL="http://localhost:5601"
-```
-
-#### **Splunk Integration** (Tích hợp Splunk)
-```bash
-# Splunk HTTP Event Collector
-export SPLUNK_HEC_URL="https://your-splunk.com:8088/services/collector"
-export SPLUNK_HEC_TOKEN="your_hec_token"
-
-splunk_log() {
-  curl -X POST "${SPLUNK_HEC_URL}" \
-    -H "Authorization: Splunk ${SPLUNK_HEC_TOKEN}" \
-    -H "Content-Type: application/json" \
-    -d '{
-      "event": "'"$1"'",
-      "sourcetype": "claude_code",
-      "index": "main"
-    }'
-}
-```
-
----
-
-## 🔒 **Security Integrations** (Tích hợp bảo mật)
-
-### **Vulnerability Scanning** (Quét lỗ hổng)
-```bash
-# Snyk Integration
-export SNYK_TOKEN="your_snyk_token"
-snyk test --severity-threshold=high
-
-# OWASP Dependency Check
-dependency-check.sh \
-  --project "Claude Code" \
-  --scan . \
-  --format ALL \
-  --out ./reports
-```
-
-### **Secret Management** (Quản lý bí mật)
-```bash
-# HashiCorp Vault
-export VAULT_ADDR="https://vault.company.com"
-export VAULT_TOKEN="your_vault_token"
-
-vault_get_secret() {
-  vault kv get -field="$2" secret/"$1"
-}
-
-# AWS Secrets Manager
-aws_get_secret() {
-  aws secretsmanager get-secret-value \
-    --secret-id "$1" \
-    --query SecretString \
-    --output text
-}
-```
-
----
-
-*Integration documentation được updated khi **new services** (dịch vụ mới) được added hoặc **existing integrations** (tích hợp hiện tại) thay đổi configuration.*
