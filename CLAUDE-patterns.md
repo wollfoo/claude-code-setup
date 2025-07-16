@@ -6,11 +6,10 @@
 
 #### Settings Hierarchy Pattern
 ```
-1. Enterprise policies (highest precedence)
-2. Command line arguments  
-3. Local project settings (.claude/settings.local.json)
-4. Shared project settings (.claude/settings.json)
-5. User settings (~/.claude/settings.json)
+1. Command line arguments  
+2. Local project settings (.claude/settings.local.json)
+3. Shared project settings (.claude/settings.json)
+4. User settings (~/.claude/settings.json)
 ```
 
 #### MCP Server Registration Pattern
@@ -62,18 +61,7 @@ claude mcp add --transport sse cf-docs https://docs.mcp.cloudflare.com/sse -s us
 - **DISABLE_*** - Feature toggle variables
 - **Uppercase with underscores** - Standard environment variable format
 
-#### Security Patterns
-- **API key management:** Support for both static keys và dynamic key helpers
-- **Permission-based access:** Tool-level permissions với allow/deny rules
-- **Working directory restrictions:** Controlled file system access
-
 ### Tool Usage Patterns
-
-#### Permission Requirements Classification
-```
-No Permission Required: Agent, Glob, Grep, LS, NotebookRead, Read, TodoRead, TodoWrite
-Permission Required: Bash, Edit, MultiEdit, NotebookEdit, WebFetch, WebSearch, Write
-```
 
 #### Batch Operations Pattern
 - **Parallel tool invocation** cho independent operations
