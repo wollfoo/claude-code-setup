@@ -31,7 +31,7 @@ When converting slash commands, ensure proper argument handling for dynamic inpu
 ## ARGUMENT HANDLING
 
 **File Input**: {file_path} or {code} - The primary file(s) or code to analyze
-**Analysis Scope**: {scope} - Specific focus areas (security, performance, quality, architecture, all)
+**Analysis Scope**: {scope} - Specific focus areas (performance, quality, architecture, all)
 **Output Format**: {format} - Report format (detailed, summary, action_items)
 **Target Audience**: {audience} - Intended audience (technical, executive, security_team)
 **Priority Level**: {priority} - Analysis depth (quick, standard, comprehensive)
@@ -55,7 +55,7 @@ When converting slash commands, ensure proper argument handling for dynamic inpu
 ```json
 [
   {"id": "setup_analysis", "content": "Record start time and initialize analysis for {file_path}", "status": "pending", "priority": "high"},
-  {"id": "security_analysis", "content": "Security Analysis of {file_path} - Focus: {scope}", "status": "pending", "priority": "high"},
+  {"id": "performance_analysis", "content": "Performance Analysis of {file_path} - Focus: {scope}", "status": "pending", "priority": "high"},
   {"id": "report_generation", "content": "Generate {format} report for {audience}", "status": "pending", "priority": "high"}
 ]
 ```
@@ -67,18 +67,18 @@ When converting slash commands, ensure proper argument handling for dynamic inpu
 ### Step 1: Identify Context Overload Patterns
 
 **Context Overflow Indicators:**
--  **Massive Instructions**: >1000 lines of detailed frameworks and methodologies
--  **Upfront Mass File Loading**: Attempting to load 10+ files simultaneously with @filename syntax
--  **Verbose Framework Application**: Extended thinking sections, redundant validation loops
--  **Sequential Bottlenecks**: All analysis phases running one after another instead of parallel
--  **Redundant Content**: Multiple repeated frameworks, bias detection, steel man reasoning overengineering
+-  **Massive Instructions**: >1000 lines of detailed frameworks and methodologies
+-  **Upfront Mass File Loading**: Attempting to load 10+ files simultaneously with @filename syntax
+-  **Verbose Framework Application**: Extended thinking sections, redundant validation loops
+-  **Sequential Bottlenecks**: All analysis phases running one after another instead of parallel
+-  **Redundant Content**: Multiple repeated frameworks, bias detection, steel man reasoning overengineering
 
 **Success Patterns to Implement:**
--  **Task Tool Delegation**: Specialized agents for bounded analysis domains
--  **Progressive Synthesis**: Incremental building rather than simultaneous processing
--  **Parallel Execution**: Multiple subagents running simultaneously
--  **Context Recycling**: Fresh context for each analysis phase
--  **Strategic File Selection**: Phase-specific file targeting
+-  **Task Tool Delegation**: Specialized agents for bounded analysis domains
+-  **Progressive Synthesis**: Incremental building rather than simultaneous processing
+-  **Parallel Execution**: Multiple subagents running simultaneously
+-  **Context Recycling**: Fresh context for each analysis phase
+-  **Strategic File Selection**: Phase-specific file targeting
 
 ### Step 2: Task Decomposition Strategy
 
@@ -113,10 +113,10 @@ Total: ~15 minutes (50% faster + better coverage)
   {"id": "setup_analysis", "content": "Record start time and initialize analysis for {file_path}", "status": "pending", "priority": "high"},
   
   // Conditional Parallel Groups Based on {scope} Parameter
-  // If scope includes "security" or "all":
-  {"id": "security_auth", "content": "Security Analysis of {file_path} - Authentication & Validation (Subagent A)", "status": "pending", "priority": "high", "parallel_group": "security", "condition": "security in {scope}"},
-  {"id": "security_tools", "content": "Security Analysis of {file_path} - Tool Isolation & Parameters (Subagent B)", "status": "pending", "priority": "high", "parallel_group": "security", "condition": "security in {scope}"},
-  {"id": "security_protocols", "content": "Security Analysis of {file_path} - Protocols & Transport (Subagent C)", "status": "pending", "priority": "high", "parallel_group": "security", "condition": "security in {scope}"},
+  // If scope includes "performance" or "all":
+  {"id": "performance_auth", "content": "Performance Analysis of {file_path} - Authentication & Validation (Subagent A)", "status": "pending", "priority": "high", "parallel_group": "performance", "condition": "performance in {scope}"},
+  {"id": "performance_tools", "content": "Performance Analysis of {file_path} - Tool Isolation & Parameters (Subagent B)", "status": "pending", "priority": "high", "parallel_group": "performance", "condition": "performance in {scope}"},
+  {"id": "performance_protocols", "content": "Performance Analysis of {file_path} - Protocols & Transport (Subagent C)", "status": "pending", "priority": "high", "parallel_group": "performance", "condition": "performance in {scope}"},
   
   // If scope includes "performance" or "all":
   {"id": "performance_complexity", "content": "Performance Analysis of {file_path} - Algorithmic Complexity (Subagent A)", "status": "pending", "priority": "high", "parallel_group": "performance", "condition": "performance in {scope}"},
@@ -128,8 +128,8 @@ Total: ~15 minutes (50% faster + better coverage)
   {"id": "architecture_design", "content": "Architecture Analysis of {file_path} - Modularity & Interfaces (Subagent B)", "status": "pending", "priority": "high", "parallel_group": "quality", "condition": "architecture in {scope}"},
   
   // Sequential Dependencies
-  {"id": "synthesis_integration", "content": "Synthesis & Integration - Consolidate findings for {file_path}", "status": "pending", "priority": "high", "depends_on": ["security", "performance", "quality"]},
-  {"id": "report_generation", "content": "Generate {format} report for {audience} - Analysis of {file_path}", "status": "pending", "priority": "high"},
+  {"id": "synthesis_integration", "content": "Synthesis & Integration - Consolidate findings for {file_path}", "status": "pending", "priority": "high", "depends_on": ["performance", "performance", "quality"]},
+  {"id": "report_generation", "content": "Generate {format} report for {audience}", "status": "pending", "priority": "high"},
   {"id": "verification_parallel", "content": "Parallel verification of {file_path} analysis with multiple validation streams", "status": "pending", "priority": "high"},
   {"id": "final_integration", "content": "Final integration and completion for {file_path}", "status": "pending", "priority": "high"}
 ]
@@ -238,8 +238,8 @@ Provide complexity metrics and specific refactoring recommendations with example
 **Security Domain Subagents:**
 ```markdown
 Subagent A Focus: Authentication, validation, credential management
-Subagent B Focus: Tool isolation, parameter security, privilege boundaries  
-Subagent C Focus: Protocol security, transport validation, message integrity
+Subagent B Focus: Tool isolation, parameter optimization, privilege boundaries  
+Subagent C Focus: Protocol performance, transport validation, message integrity
 ```
 
 **Performance Domain Subagents:**
