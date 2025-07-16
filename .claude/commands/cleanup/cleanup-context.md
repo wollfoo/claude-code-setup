@@ -70,7 +70,6 @@ wc -c CLAUDE.md README.md
 
 **Common Consolidation Opportunities:**
 
-- **Security files:** Combine security-fixes, security-optimization, security-hardening into one comprehensive file
 - **Performance files:** Merge performance-optimization and test-suite documentation
 - **Architecture files:** Consolidate detailed architecture descriptions
 - **Testing files:** Combine multiple test documentation files
@@ -114,30 +113,6 @@ wc -c CLAUDE.md README.md
 ## Consolidation Guidelines
 
 ### Creating Comprehensive Files
-
-**Security Consolidation Pattern:**
-
-```markdown
-# CLAUDE-security-comprehensive.md
-
-**Status**: ✅ COMPLETE - All Security Implementations  
-**Coverage**: [List of consolidated topics]
-
-## Executive Summary
-[High-level overview of all security work]
-
-## [Topic 1] - [Original File 1 Content]
-[Essential information from first file]
-
-## [Topic 2] - [Original File 2 Content] 
-[Essential information from second file]
-
-## [Topic 3] - [Original File 3 Content]
-[Essential information from third file]
-
-## Consolidated [Cross-cutting Concerns]
-[Information that appeared in multiple files]
-```
 
 **Quality Standards:**
 
