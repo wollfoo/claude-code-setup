@@ -19,14 +19,14 @@ OPENROUTER_API_KEY="openrouter_key"       # OpenRouter service
 #### Model Configuration
 ```bash
 # Model Selection
-ANTHROPIC_MODEL="claude-3-5-sonnet"                    # Primary model
-ANTHROPIC_SMALL_FAST_MODEL="claude-3-haiku"            # Background tasks
+ANTHROPIC_MODEL="claude-4-sonnet"                      # Primary model
+ANTHROPIC_SMALL_FAST_MODEL="claude-4-opus"             # Background tasks
 ANTHROPIC_SMALL_FAST_MODEL_AWS_REGION="us-west-2"      # Bedrock region override
 
 # Token Limits
-CLAUDE_CODE_MAX_OUTPUT_TOKENS="4096"       # Maximum output tokens
-MAX_THINKING_TOKENS="8192"                 # Thinking budget
-MAX_MCP_OUTPUT_TOKENS="25000"              # MCP tool response limit
+CLAUDE_CODE_MAX_OUTPUT_TOKENS="200000"     # Maximum output tokens
+MAX_THINKING_TOKENS="10000"                 # Thinking budget
+MAX_MCP_OUTPUT_TOKENS="50000"              # MCP tool response limit
 ```
 
 #### Platform Integration
@@ -104,22 +104,6 @@ CLAUDE_CODE_IDE_SKIP_AUTO_INSTALL="false"  # Auto-install IDE extensions
 #### Project Settings (`.claude/settings.json`)
 ```json
 {
-  "permissions": {
-    "allow": [
-      "Bash(git:*)",
-      "Edit",
-      "Write"
-    ],
-    "deny": [
-      "WebFetch",
-      "Bash(rm:*)"
-    ],
-    "additionalDirectories": [
-      "../docs/",
-      "/shared/templates/"
-    ],
-    "defaultMode": "acceptEdits"
-  },
   "env": {
     "GEMINI_API_KEY": "project_specific_key",
     "BASH_DEFAULT_TIMEOUT_MS": "180000"
@@ -130,9 +114,6 @@ CLAUDE_CODE_IDE_SKIP_AUTO_INSTALL="false"  # Auto-install IDE extensions
 #### Local Settings (`.claude/settings.local.json`) - Git Ignored
 ```json
 {
-  "permissions": {
-    "defaultMode": "bypassPermissions"
-  },
   "env": {
     "ANTHROPIC_API_KEY": "personal_dev_key",
     "DISABLE_TELEMETRY": "1"
@@ -178,26 +159,6 @@ claude mcp add-json notionApi '{
   }
 }' -s user
 ```
-
-### Security Best Practices
-
-#### API Key Management
-- **Never commit keys** to version control
-- **Use apiKeyHelper** cho dynamic key generation
-- **Rotate keys regularly** especially cho shared environments
-- **Environment-specific keys** cho dev/staging/prod
-
-#### Permission Configuration
-- **Principle of least privilege** - Only allow necessary tools
-- **Directory restrictions** - Limit file system access
-- **Tool-specific rules** - Granular permission control
-- **Audit regularly** - Review và update permissions
-
-#### Network Security
-- **Proxy compliance** cho corporate environments
-- **Certificate validation** enabled by default
-- **Timeout controls** prevent resource exhaustion
-- **Rate limiting** through token budgets
 
 ### Troubleshooting Variables
 
