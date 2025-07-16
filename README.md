@@ -57,22 +57,6 @@ The Claude Code hook is for `STOP` which uses Terminal-Notifier to show macOS de
   - Matches existing README style and tone
   - Usage: `/create-readme-section "Create an installation section for my Python project"`
 
-### `/security` Commands
-
-- **`/security-audit`** - Perform comprehensive security audit of the codebase
-  - Identifies potential vulnerabilities using OWASP guidelines
-  - Checks authentication, input validation, data protection, and API security
-  - Categorizes issues by severity (Critical, High, Medium, Low)
-  - Provides specific remediation steps with code examples
-  - Usage: `/security-audit`
-
-- **`/check-best-practices`** - Analyze code against language-specific best practices
-  - Detects languages and frameworks to apply relevant standards
-  - Checks naming conventions, code organization, error handling, and performance
-  - Provides actionable feedback with before/after code examples
-  - Prioritizes impactful improvements over nitpicks
-  - Usage: `/check-best-practices`
-
 ### `/architecture` Commands
 
 - **`/explain-architecture-pattern`** - Identify and explain architectural patterns in the codebase
@@ -131,21 +115,15 @@ Code through hierarchical settings:
 
 | Keys                           | Description                                                                                                                                        | Example                          |
 | :----------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------- |
-| `allow`                        | Array of [permission rules](/en/docs/claude-code/iam#configuring-permissions) to allow tool use                                                    | `[ "Bash(git diff:*)" ]`         |
-| `deny`                         | Array of [permission rules](/en/docs/claude-code/iam#configuring-permissions) to deny tool use                                                     | `[ "WebFetch", "Bash(curl:*)" ]` |
-| `additionalDirectories`        | Additional [working directories](iam#working-directories) that Claude has access to                                                                | `[ "../docs/" ]`                 |
-| `defaultMode`                  | Default [permission mode](iam#permission-modes) when opening Claude Code                                                                           | `"acceptEdits"`                  |
-| `disableBypassPermissionsMode` | Set to `"disable"` to prevent `bypassPermissions` mode from being activated. See [managed policy settings](iam#enterprise-managed-policy-settings) | `"disable"`                      |
 
 #### Settings precedence
 
 Settings are applied in order of precedence:
 
-1. Enterprise policies (see [IAM documentation](/en/docs/claude-code/iam#enterprise-managed-policy-settings))
-2. Command line arguments
-3. Local project settings
-4. Shared project settings
-5. User settings
+1. Command line arguments
+2. Local project settings
+3. Shared project settings
+4. User settings
 
 ### Environment variables
 
@@ -224,34 +202,29 @@ To set a global configuration, use `claude config set -g <key> <value>`:
 
 Claude Code has access to a set of powerful tools that help it understand and modify your codebase:
 
-| Tool             | Description                                          | Permission Required |
-| :--------------- | :--------------------------------------------------- | :------------------ |
-| **Agent**        | Runs a sub-agent to handle complex, multi-step tasks | No                  |
-| **Bash**         | Executes shell commands in your environment          | Yes                 |
-| **Edit**         | Makes targeted edits to specific files               | Yes                 |
-| **Glob**         | Finds files based on pattern matching                | No                  |
-| **Grep**         | Searches for patterns in file contents               | No                  |
-| **LS**           | Lists files and directories                          | No                  |
-| **MultiEdit**    | Performs multiple edits on a single file atomically  | Yes                 |
-| **NotebookEdit** | Modifies Jupyter notebook cells                      | Yes                 |
-| **NotebookRead** | Reads and displays Jupyter notebook contents         | No                  |
-| **Read**         | Reads the contents of files                          | No                  |
-| **TodoRead**     | Reads the current session's task list                | No                  |
-| **TodoWrite**    | Creates and manages structured task lists            | No                  |
-| **WebFetch**     | Fetches content from a specified URL                 | Yes                 |
-| **WebSearch**    | Performs web searches with domain filtering          | Yes                 |
-| **Write**        | Creates or overwrites files                          | Yes                 |
-
-Permission rules can be configured using `/allowed-tools` or in [permission settings](/en/docs/claude-code/settings#available-settings).
-
-#### Extending tools with hooks
+| Tool             | Description                                          |
+| :--------------- | :--------------------------------------------------- |
+| **Agent**        | Runs a sub-agent to handle complex, multi-step tasks |
+| **Bash**         | Executes shell commands in your environment          |
+| **Edit**         | Makes targeted edits to specific files               |
+| **Glob**         | Finds files based on pattern matching                |
+| **Grep**         | Searches for patterns in file contents               |
+| **LS**           | Lists files and directories                          |
+| **MultiEdit**    | Performs multiple edits on a single file atomically  |
+| **NotebookEdit** | Modifies Jupyter notebook cells                      |
+| **NotebookRead** | Reads and displays Jupyter notebook contents         |
+| **Read**         | Reads the contents of files                          |
+| **TodoRead**     | Reads the current session's task list                |
+| **TodoWrite**    | Creates and manages structured task lists            |
+| **WebFetch**     | Fetches content from a specified URL                 |
+| **WebSearch**    | Performs web searches with domain filtering          |
+| **Write**        | Creates or overwrites files                          |
 
 You can run custom commands before or after any tool executes using
 [Claude Code hooks](/en/docs/claude-code/hooks).
 
 For example, you could automatically run a Python formatter after Claude
-modifies Python files, or prevent modifications to production configuration
-files by blocking Write operations to certain paths
+modifies Python files
 
 ## Claude Code MCP Servers
 
