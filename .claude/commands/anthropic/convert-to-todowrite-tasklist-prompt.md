@@ -33,20 +33,20 @@ When converting slash commands, ensure proper argument handling for dynamic inpu
 **File Input**: {file_path} or {code} - The primary file(s) or code to analyze
 **Analysis Scope**: {scope} - Specific focus areas (performance, quality, architecture, all)
 **Output Format**: {format} - Report format (detailed, summary, action_items)
-**Target Audience**: {audience} - Intended audience (technical, executive, security_team)
+**Target Audience**: {audience} - Intended audience (technical, executive)
 **Priority Level**: {priority} - Analysis depth (quick, standard, comprehensive)
 **Context**: {context} - Additional project context and constraints
 
 ### Usage Examples:
 ```bash
 # Basic usage with file input
-/comprehensive-review file_path="@src/main.py" scope="security,performance"
+/comprehensive-review file_path="@src/main.py" scope="performance,quality"
 
 # Advanced usage with multiple parameters  
 /comprehensive-review file_path="@codebase/" scope="all" format="detailed" audience="technical" priority="comprehensive" context="Production deployment review"
 
 # Quick analysis with minimal scope
-/comprehensive-review file_path="@config.yaml" scope="security" format="summary" priority="quick"
+/comprehensive-review file_path="@config.yaml" scope="performance" format="summary" priority="quick"
 ```
 
 ### Argument Integration in TodoWrite Tasks
@@ -142,20 +142,15 @@ Total: ~15 minutes (50% faster + better coverage)
 ## CONDITIONAL EXECUTION LOGIC
 
 **Full Analysis (scope="all")**:
-- Execute all security, performance, quality, and architecture tasks
+- Execute all performance, quality, and architecture tasks
 - Use comprehensive parallel subagent deployment
-
-**Security-Focused (scope="security")**:
-- Execute only security_auth, security_tools, security_protocols tasks
-- Skip performance, quality, architecture parallel groups
-- Faster execution with security specialization
 
 **Performance-Focused (scope="performance")**:
 - Execute only performance_complexity, performance_io, performance_memory tasks
 - Include synthesis and reporting phases
 - Targeted performance optimization focus
 
-**Custom Scope (scope="security,quality")**:
+**Custom Scope (scope="performance,quality")**:
 - Execute selected parallel groups based on comma-separated values
 - Flexible analysis depth based on specific needs
 
@@ -171,28 +166,9 @@ Total: ~15 minutes (50% faster + better coverage)
 ```markdown
 ## TASK DELEGATION FRAMEWORK
 
-### Phase 1: Security Analysis (Task-Based)
-**TodoWrite**: Mark "security_analysis" as in_progress
+### Phase 1: Performance Analysis (Task-Based)
+**TodoWrite**: Mark "performance_analysis" as in_progress
 **Task Delegation**: Use Task tool with focused analysis:
-
-Task Description: "Security Analysis of Target Codebase"
-Task Prompt: "Analyze security vulnerabilities focusing on:
-- STRIDE threat modeling for architecture
-- OWASP Top 10 assessment (adapted for context)
-- Authentication and credential management
-- Input validation and injection prevention
-- Protocol-specific security patterns
-
-**CONTEXT MANAGEMENT**: Analyze only 3-5 key security files:
-- Main coordinator file (entry point security)
-- Security/validation modules (2-3 files max)
-- Key protocol handlers (1-2 files max)
-
-Provide specific findings with file:line references and actionable recommendations."
-
-### Phase 2: Performance Analysis (Task-Based)  
-**TodoWrite**: Mark "security_analysis" completed, "performance_analysis" as in_progress
-**Task Delegation**: Use Task tool with performance focus:
 
 Task Description: "Performance Analysis of Target Codebase"
 Task Prompt: "Analyze performance characteristics focusing on:
@@ -208,7 +184,7 @@ Task Prompt: "Analyze performance characteristics focusing on:
 
 Identify specific bottlenecks with measured impact and optimization opportunities."
 
-### Phase 3: Quality & Architecture Analysis (Task-Based)
+### Phase 2: Quality & Architecture Analysis (Task-Based)
 **TodoWrite**: Mark "performance_analysis" completed, "quality_analysis" as in_progress
 **Task Delegation**: Use Task tool with quality focus:
 
@@ -234,13 +210,6 @@ Provide complexity metrics and specific refactoring recommendations with example
 ## Subagent Specialization Templates
 
 ### 1. Domain-Based Parallel Analysis
-
-**Security Domain Subagents:**
-```markdown
-Subagent A Focus: Authentication, validation, credential management
-Subagent B Focus: Tool isolation, parameter optimization, privilege boundaries  
-Subagent C Focus: Protocol performance, transport validation, message integrity
-```
 
 **Performance Domain Subagents:**
 ```markdown
@@ -325,14 +294,6 @@ Provide structured verification with specific agreement/disagreement analysis."
 
 ### File Selection Strategy (Maximum 5 Files Per Task)
 
-**Security Analysis Priority Files (3-5 max):**
-```
-Task tool to analyze:
-- Main coordinator file (entry point security)
-- Primary validation/security modules (2-3 files)
-- Key protocol handlers (1-2 files)
-```
-
 **Performance Analysis Priority Files (3-5 max):**
 ```
 Task tool to analyze:
@@ -409,8 +370,7 @@ CRITICAL: Never exceed 5 files per Task operation
 ### Completion Verification Checklist
 
 **Before Synthesis Phase:**
-- [ ] All security subagents completed with specific file:line references
-- [ ] All performance subagents completed with measurable impact assessments
+- [ ] All performance subagents completed with specific file:line references
 - [ ] All quality subagents completed with concrete refactoring examples
 - [ ] No parallel streams terminated due to context overflow
 - [ ] All findings include actionable recommendations
@@ -465,7 +425,7 @@ CRITICAL: Never exceed 5 files per Task operation
 ### Template Application Examples
 
 **For Code Review Prompts:**
-- Security, Performance, Quality, Architecture subagents
+- Performance, Quality, Architecture subagents
 - File-based distribution for large codebases
 - Cross-cutting concern analysis for comprehensive coverage
 
@@ -540,12 +500,12 @@ Now, apply this framework to convert the original slash command file provided in
 
 1. **Task Delegation Instructions**:
    ```markdown
-   ### Phase 1: Security Analysis
-   **TodoWrite**: Mark "security_analysis" as in_progress
+   ### Phase 1: Performance Analysis
+   **TodoWrite**: Mark "performance_analysis" as in_progress
    **Task Delegation**: Use Task tool with focused analysis:
    
-   Task Description: "Security Analysis of Target Codebase"
-   Task Prompt: "Analyze security focusing on [specific areas]
+   Task Description: "Performance Analysis of Target Codebase"
+   Task Prompt: "Analyze performance focusing on [specific areas]
    
    **CONTEXT MANAGEMENT**: Analyze only 3-5 key files:
    - [File 1] (specific purpose)
