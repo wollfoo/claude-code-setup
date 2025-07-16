@@ -25,7 +25,6 @@
 #### **Extended Context Files** (Tệp ngữ cảnh mở rộng)
 - **CLAUDE-workflows.md** - Process documentation and standard operating procedures
 - **CLAUDE-integrations.md** - External system integration documentation
-- **CLAUDE-security.md** - Security policies and access control rules
 - **CLAUDE-performance.md** - Performance optimization strategies and benchmarks
 - **CLAUDE-testing.md** - Testing strategies and quality assurance procedures
 
