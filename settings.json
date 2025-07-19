@@ -1,3 +1,10 @@
 {
-  "model": "sonnet"
+  "model": "claude-3-sonnet-20240229",
+  "antml": {
+    "thinking": true,
+    "max_thinking_length": 2000
+  },
+  "env": {
+    "MAX_THINKING_TOKENS": "10000"
+  }
 }
